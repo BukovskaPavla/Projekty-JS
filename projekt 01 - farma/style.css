@@ -1,0 +1,78 @@
+:root {
+	--barva: gold;
+	--zvyraznene: red;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:after,
+*:before {
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+}
+
+h1 {
+	font: 60px/1 'Paytone One', sans-serif;
+	margin-top: 0;
+	color: var(--barva);
+	text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.zvirata {
+	max-width: 960px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-gap: 20px;
+}
+
+.zvire {
+	position: relative;
+}
+
+.foto {
+	width: 100%;
+	border-radius: 50%;
+	border: 3px solid var(--barva);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+	transition: none;
+}
+
+.pismeno {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translate(-20px, -25px);
+	width: 40px;
+	height: 40px;
+	font: 18px/1 'Paytone One', sans-serif;
+	font-weight: bold;
+	text-align: center;
+	color: #13547a;
+	background-color: var(--barva);
+	border-radius: 50%;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hraje .foto {
+	border-color: var(--zvyraznene);
+}
+
+.hraje .pismeno {
+	background-color: var(--zvyraznene);
+	color: white;
+}

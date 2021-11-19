@@ -1,0 +1,99 @@
+/* google font */
+@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700&subset=latin-ext');
+
+
+/* zde je magie a jednorožci, někdy i draci */
+:root {
+	--primary: #ffd700; /* rgb(255, 215, 0) */
+	--primary-active: #ffb400;
+	--bgdark: #09203f;
+	--bglight: #537895;
+}
+
+html { box-sizing: border-box; }
+*, ::after, ::before { box-sizing: border-box; }
+
+body {
+	min-height: 100vh;
+	font: 18px/1.5 'Merriweather', serif;
+	background-image: linear-gradient(to top, var(--bgdark) 0%, var(--bglight) 100%);
+}
+
+input,
+button {
+	font: 18px/1.5 'Merriweather', serif;
+}
+
+h1 {
+	margin: 30px 0 20px 0;
+	font-size: 60px;
+	color: var(--primary);
+	text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+	text-align: center;
+}
+
+.hledani {
+	display: flex;
+	max-width: 600px;
+	margin: 20px auto;
+	border-radius: 6px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hledani input {
+	flex: 1;
+	padding:10px 20px;
+	font-size: 28px;
+	line-height: 1;
+	border: 2px solid var(--primary);
+	background-color: white;
+	border-radius: 6px 0 0 6px;
+	outline: 0;
+}
+
+.hledani input:focus {
+	box-shadow: 0 0 30px rgba(255, 215, 0, 1);
+}
+
+.hledani button {
+	padding:10px 20px;
+	font-size: 28px;
+	font-weight: bold;
+	line-height: 1;
+	color: var(--bgdark);
+	background-color: var(--primary);
+	border-radius: 0 6px 6px 0;
+	border: 0;
+	outline: 0;
+	cursor: pointer;
+}
+
+.hledani button:hover {
+	background-color: var(--primary-active);
+}
+
+
+#seznam {
+	max-width: 600px;
+	margin: 30px auto;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 8px;
+	list-style: none;
+}
+
+#seznam li {
+	margin: 0;
+	padding: 8px;
+	text-align: center;
+	color: var(--bgdark);
+	background-color: white;
+	border-radius: 6px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#seznam li.vybrana {
+	color: var(--bgdark);
+	background-color: var(--primary);
+}
