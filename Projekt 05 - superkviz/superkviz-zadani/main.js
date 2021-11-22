@@ -133,6 +133,10 @@ const poradi = document.querySelector("#poradi")
 const otazka = document.querySelector("#otazka")
 const obrazek = document.querySelector("#obrazek")
 const moznosti = document.querySelector("#moznosti")
+const kviz = document.querySelector(".kviz")
+const kvizoveOtazky = document.querySelector(".kvizoveOtazky")
+const kvizoveVysledky = document.querySelector(".kvizoveVysledky")
+const uspesnost = document.querySelector("#uspesnost")
 let aktualniOtazka = 0
 let mojeOdpovedi = []
 moznosti.addEventListener("click", priKliknutiNaOdpoved)
@@ -175,25 +179,45 @@ function priKliknutiNaOdpoved(udalost) {
 function zobrazVyhodnoceni() {
 	console.log(mojeOdpovedi)
 	document.querySelector("#poradi").remove()
-	document.querySelector(".obsah").remove()
-	document.querySelector("#otazka").remove()
+	document.querySelector(".foto").remove()
+	document.querySelector("#odpovedi").remove()
+	otazka.textContent = "Vyhodnocení superkvízu je:"
+	
+	let seznamVyhodnoceni = document.createElement('ol')
+	let spravnaOdpovedPocet = 0
+    for(let i = 0; i < otazky.length; i++) {
+        let novaPolozkaVyhodnoceniOtazka = document.createElement('li')
+		let novaPolozkaVyhodnoceniOdpoved = document.createElement('p')
+		
+		novaPolozkaVyhodnoceniOtazka.setAttribute('class','item')
 
-	let seznamVyhodnoceni = document.createElement('ul')
-    for(let i = 0; i < odpovedi.length; i++) {
-        let novaPolozka = document.createElement('li')
-        novaPolozka.textContent = otazka[i]
-		novaPolozka.textContent = odpovedi[i]
-        seznam.appendChild(novaPolozka)
+        novaPolozkaVyhodnoceniOtazka.textContent = otazky[i].otazka
+		novaPolozkaVyhodnoceniOtazka.id = "otazkaVyhodnoceni"
+		
+		novaPolozkaVyhodnoceniOdpoved.textContent = "Tvoje odpoveď je: " + otazky[i].odpovedi[mojeOdpovedi[i]]
+		novaPolozkaVyhodnoceniOdpoved.id = "odpovedVyhodnoceni"
+
+		console.log("Moje odpoved je: " + mojeOdpovedi[i])
+		console.log("Správná odpoveď je: " + otazky[i].spravna)
+		console.log("Správná odpoveď je: " + otazky[i].odpovedi[otazky[i].spravna])
+
+		let kontrola = document.createElement('p')
+		
+		if(mojeOdpovedi[i] == otazky[i].spravna){
+			kontrola.textContent = "Správná odpověď"
+			kontrola.id = "spravnaOdpovedBarva"
+			spravnaOdpovedPocet =  spravnaOdpovedPocet + 1
+		} else {
+			kontrola.textContent = "Špatná odpověď. Správná odpověď je: " + otazky[i].odpovedi[otazky[i].spravna]
+			kontrola.id = "spatnaOdpovedBarva"
+		}
+		
+		seznamVyhodnoceni.appendChild(novaPolozkaVyhodnoceniOtazka)
+		seznamVyhodnoceni.appendChild(novaPolozkaVyhodnoceniOdpoved)
+		seznamVyhodnoceni.appendChild(kontrola)
+        
     }
+	kvizoveOtazky.appendChild(seznamVyhodnoceni)
+	kvizoveVysledky.textContent = "ÚSPĚŠNOST TESTU JE  " + (Math.round((spravnaOdpovedPocet / otazky.length)*100) + " % ")
 
 }
-
-
-/*zaznamenani odpovedi pri kliknuti do nove promenne odpovedi, 
-ktera je na zacatku prazdne pole
-porovnani odpovedi se spravnou odpovedi, kdyz sedi napsat, ze odpovedel
-spravne
-
-funkce zobrazVyhodnoceni - zaverecna stranka se shrnutim vysledku
-
-*/
